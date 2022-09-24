@@ -92,6 +92,49 @@ type (
 		ReactionType   int                   `json:"reactionType"`   // 反应类型，0：删除，1：新增
 	}
 
+	// CardMessageButtonClickEventBody 卡片消息按钮事件
+	CardMessageButtonClickEventBody struct {
+		IslandId         string         `json:"islandId"`         // 来源群号
+		ChannelId        string         `json:"channelId"`        // 来源频道ID
+		DodoId           string         `json:"dodoId"`           // 来源DoDo号
+		MessageId        string         `json:"messageId"`        // 来源消息ID，频道私信触发时，返回频道私信消息ID
+		Personal         *PersonalModel `json:"personal"`         // 个人信息
+		Member           *MemberModel   `json:"member"`           // 成员信息
+		InteractCustomId string         `json:"interactCustomId"` // 交互自定义ID
+		Value            string         `json:"value"`            // Value
+	}
+
+	// CardMessageFormSubmitEventBody 卡片消息表单回传事件
+	CardMessageFormSubmitEventBody struct {
+		islandId         string           `json:"islandId"`         // 来源群号
+		channelId        string           `json:"channelId"`        // 来源频道ID
+		dodoId           string           `json:"dodoId"`           // 来源DoDo号
+		messageId        string           `json:"messageId"`        // 来源消息ID，频道私信触发时，返回频道私信消息ID
+		personal         *PersonalModel   `json:"personal"`         // 个人信息
+		member           *MemberModel     `json:"member"`           // 成员信息
+		interactCustomId string           `json:"interactCustomId"` // 交互自定义ID
+		formData         []*FormDataModel `json:"formData"`         // 表单数据
+	}
+	FormDataModel struct {
+		key   string `json:"key"`   // 选项自定义ID
+		value string `json:"value"` // Value
+	}
+
+	// CardMessageListSubmitEventBody 卡片消息列表回传事件
+	CardMessageListSubmitEventBody struct {
+		IslandId         string           `json:"islandId"`         // 来源群号
+		ChannelId        string           `json:"channelId"`        // 来源频道ID
+		DodoId           string           `json:"dodoId"`           // 来源DoDo号
+		MessageId        string           `json:"messageId"`        // 来源消息ID，频道私信触发时，返回频道私信消息ID
+		Personal         *PersonalModel   `json:"personal"`         // 个人信息
+		Member           *MemberModel     `json:"member"`           // 成员信息
+		InteractCustomId string           `json:"interactCustomId"` // 交互自定义ID
+		ListData         []*ListDataModel `json:"listData"`         // 列表数据
+	}
+	ListDataModel struct {
+		Name string `json:"name"` // 选项名
+	}
+
 	// MemberJoinEventBody 成员加入事件
 	MemberJoinEventBody struct {
 		IslandId   string `json:"islandId"`   // 来源群号

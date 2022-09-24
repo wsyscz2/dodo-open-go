@@ -2,11 +2,14 @@ package websocket
 
 // MessageHandlers instance message handlers
 type MessageHandlers struct {
-	PersonalMessage PersonalMessageEventHandler
-	ChannelMessage  ChannelMessageEventHandler
-	MessageReaction MessageReactionEventHandler
-	MemberJoin      MemberJoinEventHandler
-	MemberLeave     MemberLeaveEventHandler
+	PersonalMessage        PersonalMessageEventHandler
+	ChannelMessage         ChannelMessageEventHandler
+	MessageReaction        MessageReactionEventHandler
+	CardMessageButtonClick CardMessageButtonClickHandler
+	CardMessageFormSubmit  CardMessageFormSubmitHandler
+	CardMessageListSubmit  CardMessageListSubmitHandler
+	MemberJoin             MemberJoinEventHandler
+	MemberLeave            MemberLeaveEventHandler
 
 	PlainTextHandler PlainTextHandler
 	ErrorHandler     ErrorHandler
@@ -14,13 +17,16 @@ type MessageHandlers struct {
 
 // DefaultHandlers default handlers to manage all supported message
 var DefaultHandlers = &MessageHandlers{
-	PersonalMessage:  func(event *WSEventMessage, data *PersonalMessageEventBody) error { return nil },
-	ChannelMessage:   func(event *WSEventMessage, data *ChannelMessageEventBody) error { return nil },
-	MessageReaction:  func(event *WSEventMessage, data *MessageReactionEventBody) error { return nil },
-	MemberJoin:       func(event *WSEventMessage, data *MemberJoinEventBody) error { return nil },
-	MemberLeave:      func(event *WSEventMessage, data *MemberLeaveEventBody) error { return nil },
-	PlainTextHandler: func(event *WSEventMessage, message []byte) error { return nil },
-	ErrorHandler:     func(err error) {},
+	PersonalMessage:        func(event *WSEventMessage, data *PersonalMessageEventBody) error { return nil },
+	ChannelMessage:         func(event *WSEventMessage, data *ChannelMessageEventBody) error { return nil },
+	MessageReaction:        func(event *WSEventMessage, data *MessageReactionEventBody) error { return nil },
+	CardMessageButtonClick: func(event *WSEventMessage, data *CardMessageButtonClickEventBody) error { return nil },
+	CardMessageFormSubmit:  func(event *WSEventMessage, data *CardMessageFormSubmitEventBody) error { return nil },
+	CardMessageListSubmit:  func(event *WSEventMessage, data *CardMessageListSubmitEventBody) error { return nil },
+	MemberJoin:             func(event *WSEventMessage, data *MemberJoinEventBody) error { return nil },
+	MemberLeave:            func(event *WSEventMessage, data *MemberLeaveEventBody) error { return nil },
+	PlainTextHandler:       func(event *WSEventMessage, message []byte) error { return nil },
+	ErrorHandler:           func(err error) {},
 }
 
 func fillHandler(handlers *MessageHandlers) *MessageHandlers {
@@ -56,6 +62,15 @@ type ChannelMessageEventHandler func(event *WSEventMessage, data *ChannelMessage
 
 // MessageReactionEventHandler 消息反应事件 handler
 type MessageReactionEventHandler func(event *WSEventMessage, data *MessageReactionEventBody) error
+
+// CardMessageButtonClickHandler 卡片消息按钮事件 handler
+type CardMessageButtonClickHandler func(event *WSEventMessage, data *CardMessageButtonClickEventBody) error
+
+// CardMessageFormSubmitHandler 卡片消息表单回传事件 handler
+type CardMessageFormSubmitHandler func(event *WSEventMessage, data *CardMessageFormSubmitEventBody) error
+
+// CardMessageListSubmitHandler 卡片消息列表回传事件 handler
+type CardMessageListSubmitHandler func(event *WSEventMessage, data *CardMessageListSubmitEventBody) error
 
 // MemberJoinEventHandler 成员加入事件 handler
 type MemberJoinEventHandler func(event *WSEventMessage, data *MemberJoinEventBody) error
