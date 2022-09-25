@@ -151,6 +151,19 @@ type (
 		OperateDoDoId string         `json:"operateDoDoId"` // 操作者DoDo号（执行踢出操作的人）
 		ModifyTime    string         `json:"modifyTime"`    // 变动时间
 	}
+
+	// PersonalMessageEventBody 个人消息事件
+	ChannelArticleEventBody struct {
+		IslandId  string         `json:"islandId"`  // 来源群号
+		ChannelId string         `json:"channelId"` // 来源帖子频道ID
+		DodoId    string         `json:"dodoId"`    // 来源DoDo号
+		Personal  *PersonalModel `json:"personal"`  // 个人信息
+		Member    *MemberModel   `json:"membe"`     // 成员信息
+		ArticleId string         `json:"articleId"` // 帖子id
+		Title     string         `json:"title"`     // 标题
+		ImageList []string       `json:"imageList"` // 图片列表
+		Content   string         `json:"content"`   // 文本内容
+	}
 )
 
 func (e *PersonalMessageEventBody) EventType() EventType {

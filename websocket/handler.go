@@ -10,6 +10,7 @@ type MessageHandlers struct {
 	CardMessageListSubmit  CardMessageListSubmitHandler
 	MemberJoin             MemberJoinEventHandler
 	MemberLeave            MemberLeaveEventHandler
+	ChannelArticle         ChannelArticleEventHandler
 
 	PlainTextHandler PlainTextHandler
 	ErrorHandler     ErrorHandler
@@ -25,6 +26,7 @@ var DefaultHandlers = &MessageHandlers{
 	CardMessageListSubmit:  func(event *WSEventMessage, data *CardMessageListSubmitEventBody) error { return nil },
 	MemberJoin:             func(event *WSEventMessage, data *MemberJoinEventBody) error { return nil },
 	MemberLeave:            func(event *WSEventMessage, data *MemberLeaveEventBody) error { return nil },
+	ChannelArticle:         func(event *WSEventMessage, data *ChannelArticleEventBody) error { return nil },
 	PlainTextHandler:       func(event *WSEventMessage, message []byte) error { return nil },
 	ErrorHandler:           func(err error) {},
 }
@@ -77,6 +79,9 @@ type MemberJoinEventHandler func(event *WSEventMessage, data *MemberJoinEventBod
 
 // MemberLeaveEventHandler 成员退出事件 handler
 type MemberLeaveEventHandler func(event *WSEventMessage, data *MemberLeaveEventBody) error
+
+// ChannelArticleEventHandler 发帖事件 handler
+type ChannelArticleEventHandler func(event *WSEventMessage, data *ChannelArticleEventBody) error
 
 // PlainTextHandler plain text message handler
 type PlainTextHandler func(event *WSEventMessage, message []byte) error
