@@ -3,9 +3,10 @@ package client
 import (
 	"context"
 	"errors"
+	"time"
+
 	"github.com/dodo-open/dodo-open-go/model"
 	"github.com/go-resty/resty/v2"
-	"time"
 )
 
 type (
@@ -14,6 +15,7 @@ type (
 		Base
 		IslandAPI
 		ChannelAPI
+		ArticleAPI
 		MessageAPI
 		RoleAPI
 		MemberAPI
@@ -46,6 +48,10 @@ type (
 		CreateChannel(ctx context.Context, req *model.CreateChannelReq) (*model.CreateChannelRsp, error)    // CreateChannel 创建频道
 		EditChannel(ctx context.Context, req *model.EditChannelReq) (bool, error)                           // EditChannel 编辑频道
 		RemoveChannel(ctx context.Context, req *model.RemoveChannelReq) (bool, error)                       // RemoveChannel 编辑频道
+	}
+
+	ArticleAPI interface {
+		SetChannelArticleAdd(ctx context.Context, req *model.SetChannelArticleAddReq) (*model.SetChannelArticleAddRsp, error) // SetChannelArticleAdd 发布帖子
 	}
 
 	// MessageAPI message API interface

@@ -30,6 +30,9 @@ const (
 	addChannelMessageReaction uri = "/api/v1/channel/message/reaction/add"    // 添加表情反应
 	remChannelMessageReaction uri = "/api/v1/channel/message/reaction/remove" // 取消表情反应
 
+	// 帖子频道 API
+	setChannelArticleAdd uri = "/api/v1/channel/article/add" // 发布帖子
+
 	// 身份组 API
 	getRoleListUri      uri = "/api/v1/role/list"          // 获取身份组列表
 	createRoleUri       uri = "/api/v1/role/add"           // 创建身份组

@@ -213,3 +213,20 @@ func (p *RemChannelMessageReactionReq) ValidParams() error {
 	}
 	return nil
 }
+
+type (
+	SetChannelArticleAddReq struct {
+		ChannelId string `json:"channelId"` // 帖子频道ID
+		Title     string `json:"title"`     // 标题，60个字符限制
+		Content   string `json:"content"`   // 内容，10000字符限制，支持菱形语法，内容和图片链接必填一个
+		ImageUrl  string `json:"imageUrl"`  // 图片链接，必须是官方的链接，通过上传资源图片接口可获得图片链接，内容和图片链接必填一个
+	}
+
+	SetChannelArticleAddRsp struct {
+		ArticleId string `json:"articleId"` // 帖子ID
+	}
+)
+
+func (p *SetChannelArticleAddReq) ValidParams() error {
+	return nil
+}
