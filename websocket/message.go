@@ -164,6 +164,19 @@ type (
 		ImageList []string       `json:"imageList"` // 图片列表
 		Content   string         `json:"content"`   // 文本内容
 	}
+
+	ChannelArticleCommentEventBody struct {
+		IslandId  string         `json:"islandId"`  // 来源群号
+		ChannelId string         `json:"channelId"` // 来源帖子频道ID
+		DodoId    string         `json:"dodoId"`    // 来源DoDo号
+		Personal  *PersonalModel `json:"personal"`  // 个人信息
+		Member    *MemberModel   `json:"membe"`     // 成员信息
+		ArticleId string         `json:"articleId"` // 帖子ID
+		CommentId string         `json:"commentId"` // 帖子评论ID
+		ReplyId   string         `json:"replyId"`   // 帖子评论回复ID，为空时：为评论事件，不为空时：为评论回复事件
+		ImageList []string       `json:"imageList"` // 图片列表
+		Content   string         `json:"content"`   // 文本内容
+	}
 )
 
 func (e *PersonalMessageEventBody) EventType() EventType {

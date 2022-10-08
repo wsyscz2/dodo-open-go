@@ -17,6 +17,7 @@ const (
 	MemberJoinEvent             EventType = "4001" // 成员加入事件
 	MemberLeaveEvent            EventType = "4002" // 成员退出事件
 	ChannelArticleEvent         EventType = "6001" // 帖子发布事件
+	ChannelArticleCommentEvent  EventType = "6002" // 帖子评论回复事件
 )
 
 // eventParserMap event parser map, for safety, do not modify this map
@@ -30,6 +31,7 @@ var eventParserMap = map[EventType]eventParser{
 	MemberJoinEvent:             memberJoinHandler,
 	MemberLeaveEvent:            memberLeaveHandler,
 	ChannelArticleEvent:         channelArticleHandler,
+	ChannelArticleCommentEvent:  channelArticleCommentHandler,
 }
 
 // ParseDataAndHandle parse message data and handle it
@@ -183,6 +185,20 @@ func channelArticleHandler(c *client, event *WSEventMessage, message []byte) err
 	}
 	if DefaultHandlers.ChannelArticle != nil {
 		return DefaultHandlers.ChannelArticle(event, data)
+	}
+	return nil
+}
+
+func channelArticleCommentHandler(c *client, event *WSEventMessage, message []byte) error {
+	data := &ChannelArticleCommentEventBody{}
+	if err := ParseData(message, data); err != nil {
+		return err
+	}
+	if c.conf.messageHandlers.ChannelArticleComment != nil {
+		return c.conf.messageHandlers.ChannelArticleComment(event, data)
+	}
+	if DefaultHandlers.ChannelArticleComment != nil {
+		return DefaultHandlers.ChannelArticleComment(event, data)
 	}
 	return nil
 }
