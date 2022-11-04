@@ -57,7 +57,7 @@ type (
 	// MessageAPI message API interface
 	MessageAPI interface {
 		SendChannelMessage(ctx context.Context, req *model.SendChannelMessageReq) (*model.SendChannelMessageRsp, error) // SetChannelMessageSend 发送消息
-		EditChannelMessage(ctx context.Context, req *model.EditChannelMessageReq) (*model.EditChannelMessageRsp, error) // SetChannelMessageEdit 编辑消息
+		EditChannelMessage(ctx context.Context, req *model.EditChannelMessageReq) (bool, error)                         // SetChannelMessageEdit 编辑消息
 		WithdrawChannelMessage(ctx context.Context, req *model.WithdrawChannelMessageReq) (bool, error)                 // SetChannelMessageWithdraw 撤回消息
 		AddChannelMessageReaction(ctx context.Context, req *model.AddChannelMessageReactionReq) (bool, error)           // SetChannelMessageReactionAdd 添加表情反应
 		RemChannelMessageReaction(ctx context.Context, req *model.RemChannelMessageReactionReq) (bool, error)           // SetChannelMessageReactionRemove 取消表情反应

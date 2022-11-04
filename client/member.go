@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+
 	"github.com/dodo-open/dodo-open-go/errs"
 	"github.com/dodo-open/dodo-open-go/model"
 	"github.com/dodo-open/dodo-open-go/tools"
@@ -168,4 +169,22 @@ func (c *client) UnbanMember(ctx context.Context, req *model.UnbanMemberReq) (bo
 		return false, errs.New(result.Status, result.Message)
 	}
 	return true, nil
+}
+
+// 获取成员DoDo号映射列表
+func (c *client) GetMemberDodoIdMapList(ctx context.Context, req *model.GetMemberDodoIdMapListReq) ([]*model.MemberDodoIdMap, error) {
+	if err := req.ValidParams(); err != nil {
+		return nil, err
+	}
+
+	resp, err := c.request(ctx).SetBody(req).Post(c.getApi(unbanMemberUri))
+	if err != nil {
+		return nil, err
+	}
+
+	result := make([]*model.MemberDodoIdMap, 0)
+	if err = tools.JSON.Unmarshal(c.unmarshalResult(resp).Data, &result); err != nil {
+		return nil, err
+	}
+	return result, nil
 }

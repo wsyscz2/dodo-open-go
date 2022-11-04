@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+
 	"github.com/dodo-open/dodo-open-go/errs"
 	"github.com/dodo-open/dodo-open-go/model"
 	"github.com/dodo-open/dodo-open-go/tools"
@@ -28,23 +29,21 @@ func (c *client) SendChannelMessage(ctx context.Context, req *model.SendChannelM
 }
 
 // EditChannelMessage 编辑消息
-// model.EditChannelMessageReq 对象中的 MessageType 参数会在SDK中重新赋值，所以无需开发者关注
-func (c *client) EditChannelMessage(ctx context.Context, req *model.EditChannelMessageReq) (*model.EditChannelMessageRsp, error) {
+func (c *client) EditChannelMessage(ctx context.Context, req *model.EditChannelMessageReq) (bool, error) {
 	if err := req.ValidParams(); err != nil {
-		return nil, err
+		return false, err
 	}
 
-	req.MessageType = req.MessageBody.MessageType()
 	resp, err := c.request(ctx).SetBody(req).Post(c.getApi(editChannelMessageUri))
 	if err != nil {
-		return nil, err
+		return false, err
 	}
 
-	result := &model.EditChannelMessageRsp{}
-	if err = tools.JSON.Unmarshal(c.unmarshalResult(resp).Data, &result); err != nil {
-		return nil, err
+	result := c.unmarshalResult(resp)
+	if result.Status != 0 {
+		return false, errs.New(result.Status, result.Message)
 	}
-	return result, nil
+	return true, nil
 }
 
 // WithdrawChannelMessage 撤回消息
