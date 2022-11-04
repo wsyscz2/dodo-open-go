@@ -75,15 +75,16 @@ type (
 
 	// MemberAPI member API interface
 	MemberAPI interface {
-		GetMemberList(ctx context.Context, req *model.GetMemberListReq) (*model.GetMemberListRsp, error)                   // GetMemberList 获取成员列表
-		GetMemberInfo(ctx context.Context, req *model.GetMemberInfoReq) (*model.GetMemberInfoRsp, error)                   // GetMemberInfo 获取成员信息
-		GetMemberRoleList(ctx context.Context, req *model.GetMemberRoleListReq) ([]*model.RoleElement, error)              // GetMemberRoleList 获取成员身份组列表
-		GetMemberInviteInfo(ctx context.Context, req *model.GetMemberInviteInfoReq) (*model.GetMemberInviteInfoRsp, error) // GetMemberInvitationInfo 获取成员邀请信息
-		SetMemberNick(ctx context.Context, req *model.SetMemberNickReq) (bool, error)                                      // SetMemberNick 编辑成员群昵称
-		MuteMember(ctx context.Context, req *model.MuteMemberReq) (bool, error)                                            // MuteMember 禁言成员
-		UnmuteMember(ctx context.Context, req *model.UnmuteMemberReq) (bool, error)                                        // UnmuteMember 取消成员禁言
-		BanMember(ctx context.Context, req *model.BanMemberReq) (bool, error)                                              // BanMember 永久封禁成员
-		UnbanMember(ctx context.Context, req *model.UnbanMemberReq) (bool, error)                                          // UnbanMember 取消成员永久封禁
+		GetMemberList(ctx context.Context, req *model.GetMemberListReq) (*model.GetMemberListRsp, error)                    // GetMemberList 获取成员列表
+		GetMemberInfo(ctx context.Context, req *model.GetMemberInfoReq) (*model.GetMemberInfoRsp, error)                    // GetMemberInfo 获取成员信息
+		GetMemberRoleList(ctx context.Context, req *model.GetMemberRoleListReq) ([]*model.RoleElement, error)               // GetMemberRoleList 获取成员身份组列表
+		GetMemberInviteInfo(ctx context.Context, req *model.GetMemberInviteInfoReq) (*model.GetMemberInviteInfoRsp, error)  // GetMemberInvitationInfo 获取成员邀请信息
+		SetMemberNick(ctx context.Context, req *model.SetMemberNickReq) (bool, error)                                       // SetMemberNick 编辑成员群昵称
+		MuteMember(ctx context.Context, req *model.MuteMemberReq) (bool, error)                                             // MuteMember 禁言成员
+		UnmuteMember(ctx context.Context, req *model.UnmuteMemberReq) (bool, error)                                         // UnmuteMember 取消成员禁言
+		BanMember(ctx context.Context, req *model.BanMemberReq) (bool, error)                                               // BanMember 永久封禁成员
+		UnbanMember(ctx context.Context, req *model.UnbanMemberReq) (bool, error)                                           // UnbanMember 取消成员永久封禁
+		GetMemberDodoIdMapList(ctx context.Context, req *model.GetMemberDodoIdMapListReq) ([]*model.MemberDodoIdMap, error) // GetMemberDodoIdMapList 获取成员DoDo号映射列表
 	}
 
 	// DigitalAssetAPI digital asset API interface

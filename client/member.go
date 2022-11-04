@@ -171,13 +171,13 @@ func (c *client) UnbanMember(ctx context.Context, req *model.UnbanMemberReq) (bo
 	return true, nil
 }
 
-// 获取成员DoDo号映射列表
+// GetMemberDodoIdMapList 获取成员DoDo号映射列表
 func (c *client) GetMemberDodoIdMapList(ctx context.Context, req *model.GetMemberDodoIdMapListReq) ([]*model.MemberDodoIdMap, error) {
 	if err := req.ValidParams(); err != nil {
 		return nil, err
 	}
 
-	resp, err := c.request(ctx).SetBody(req).Post(c.getApi(unbanMemberUri))
+	resp, err := c.request(ctx).SetBody(req).Post(c.getApi(getMemberDodoIdMapList))
 	if err != nil {
 		return nil, err
 	}
