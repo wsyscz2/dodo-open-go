@@ -62,11 +62,12 @@ type (
 type (
 	// PersonalMessageEventBody 个人消息事件
 	PersonalMessageEventBody struct {
-		DodoSourceId string              `json:"dodoSourceId"` // 来源DoDoID
-		Personal     *PersonalModel      `json:"personal"`     // 个人信息
-		MessageId    string              `json:"messageId"`    // 消息ID
-		MessageType  model.MessageType   `json:"messageType"`  // 消息类型，1：文本消息，2：图片消息，3：视频消息
-		MessageBody  jsoniter.RawMessage `json:"messageBody"`  // 消息内容（model.IMessageBody）
+		IslandSourceId string              `json:"islandSourceId"` // 来源群ID
+		DodoSourceId   string              `json:"dodoSourceId"`   // 来源DoDoID
+		Personal       *PersonalModel      `json:"personal"`       // 个人信息
+		MessageId      string              `json:"messageId"`      // 消息ID
+		MessageType    model.MessageType   `json:"messageType"`    // 消息类型，1：文本消息，2：图片消息，3：视频消息
+		MessageBody    jsoniter.RawMessage `json:"messageBody"`    // 消息内容（model.IMessageBody）
 	}
 
 	// ChannelMessageEventBody 频道消息事件
