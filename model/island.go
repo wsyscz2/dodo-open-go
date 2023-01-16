@@ -9,7 +9,6 @@ type GetIslandListReq struct {
 // IslandElement 获取群列表 list element
 type IslandElement struct {
 	IslandSourceId    string `json:"islandSourceId"`    // 群ID
-	IslandId          string `json:"islandId"`          // 群号
 	IslandName        string `json:"islandName"`        // 群名称
 	CoverUrl          string `json:"coverUrl"`          // 群头像
 	MemberCount       int    `json:"memberCount"`       // 成员数
@@ -25,7 +24,7 @@ type GetIslandInfoReq struct {
 
 func (p *GetIslandInfoReq) ValidParams() error {
 	if p.IslandSourceId == "" {
-		return errors.New("invalid parameter IslandId (empty detected)")
+		return errors.New("invalid parameter IslandSourceId (empty detected)")
 	}
 	return nil
 }
@@ -54,7 +53,7 @@ type (
 
 func (p *GetIslandLevelRankListReq) ValidParams() error {
 	if p.IslandSourceId == "" {
-		return errors.New("invalid parameter IslandId (empty detected)")
+		return errors.New("invalid parameter IslandSourceId (empty detected)")
 	}
 	return nil
 }
@@ -81,7 +80,7 @@ type (
 
 func (p *GetIslandMuteListReq) ValidParams() error {
 	if p.IslandSourceId == "" {
-		return errors.New("invalid parameter IslandId (empty detected)")
+		return errors.New("invalid parameter IslandSourceId (empty detected)")
 	}
 	if p.PageSize <= 0 {
 		return errors.New("invalid parameter PageSize (PageSize must not less than 0)")
@@ -111,7 +110,7 @@ type (
 
 func (p *GetIslandBanListReq) ValidParams() error {
 	if p.IslandSourceId == "" {
-		return errors.New("invalid parameter IslandId (empty detected)")
+		return errors.New("invalid parameter IslandSourceId (empty detected)")
 	}
 	if p.PageSize <= 0 {
 		return errors.New("invalid parameter PageSize (PageSize must not less than 0)")

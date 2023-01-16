@@ -6,7 +6,7 @@ import (
 
 // MemberElement 获取成员列表 list element
 type MemberElement struct {
-	DodoSourceId     string `json:"dodoSourceId"`     // DoDo号
+	DodoSourceId     string `json:"dodoSourceId"`     // DoDoID
 	NickName         string `json:"nickName"`         // 在群昵称
 	PersonalNickName string `json:"personalNickName"` // DoDo昵称
 	AvatarUrl        string `json:"avatarUrl"`        // 头像
@@ -35,7 +35,7 @@ type (
 
 func (p *GetMemberListReq) ValidParams() error {
 	if p.IslandSourceId == "" {
-		return errors.New("invalid parameter IslandId (empty detected)")
+		return errors.New("invalid parameter IslandSourceId (empty detected)")
 	}
 	if p.PageSize <= 0 || p.PageSize > 100 {
 		return errors.New("invalid parameter PageSize (0 < PageSize <= 100)")
