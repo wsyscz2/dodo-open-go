@@ -73,6 +73,9 @@ const (
 	getGiftMemberListUri     uri = "/api/v2/gift/member/list"      // 获取内容礼物内成员列表
 	getGiftGrossValueListUri uri = "/api/v2/gift/gross/value/list" // 获取内容礼物总值列表
 
+	getIntegralInfoUri uri = "/api/v2/integral/info" // 查询成员积分
+	setIntegralEditUri uri = "/api/v2/integral/edit" // 管理成员积分
+
 	// 数字藏品 API
 	getMemberNFTStatusUri    uri = "/api/v2/member/nft/status"       // 获取成员数字藏品判断
 	getMemberUPowerchainInfo uri = "/api/v2/member/upowerchain/info" // 取成员高能链数字藏品信息

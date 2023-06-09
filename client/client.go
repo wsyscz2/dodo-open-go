@@ -26,6 +26,7 @@ type (
 		ResourceUploadAPI
 		WebsocketAPI
 		GiftAPI
+		IntegralAPI
 
 		GetMemberDodoIdMapList(ctx context.Context, req *model.GetMemberDodoIdMapListReq) ([]*model.MemberDodoIdMap, error)
 	}
@@ -117,6 +118,11 @@ type (
 		GetGiftList(ctx context.Context, req *model.GetGiftListReq) ([]*model.GetGiftListRsp, error)                             // GetGiftList 获取内容礼物列表
 		GetGiftMemberList(ctx context.Context, req *model.GetGiftMemberListReq) (*model.GetGiftMemberListRsp, error)             // GetGiftMemberList 获取内容礼物内成员列表
 		GetGiftGrossValueList(ctx context.Context, req *model.GetGiftGrossValueListReq) (*model.GetGiftGrossValueListRsp, error) // GetGiftGrossValueList 获取内容礼物总值列表
+	}
+
+	IntegralAPI interface {
+		GetIntegralInfo(ctx context.Context, req *model.GetIntegralInfoReq) (*model.GetIntegralInfoRsp, error) // GetIntegralInfo 查询成员积分
+		SetIntegralEdit(ctx context.Context, req *model.SetIntegralEditReq) (*model.SetIntegralEditRsp, error) // SetIntegralEdit 管理成员积分
 	}
 
 	// DigitalAssetAPI digital asset API interface
